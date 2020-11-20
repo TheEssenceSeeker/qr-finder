@@ -1,8 +1,8 @@
 import React from 'react'
 import QRCode from 'qrcode.react'
 
-export const LinkCard = ({ link }) => {
-  const url = `http://localhost:3000/info/${link._id}`
+export const LinkCard = ({ link, baseUrl }) => {
+  const url = `${baseUrl}info/${link._id}`
 
   return (
     <div className="row mt-3">

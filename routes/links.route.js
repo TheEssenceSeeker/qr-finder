@@ -31,7 +31,7 @@ router.get('/', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   try {
     const link = await Link.findById(req.params.id)
-    res.json(link)
+    res.json({ link, baseUrl: process.env.BASE_URL })
   } catch (err) {
     res.status(500).json({ error: err.message })
   }

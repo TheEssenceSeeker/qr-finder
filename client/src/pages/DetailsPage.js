@@ -9,6 +9,7 @@ export const DetailsPage = () => {
   const { token } = useContext(AuthContext)
   const { request, loading } = useHttp()
   const [link, setLink] = useState(null)
+  const [baseUrl, setBaseUrl] = useState('')
   const linkId = useParams().id
 
   const getLink = useCallback(async () => {
@@ -16,7 +17,8 @@ export const DetailsPage = () => {
       const fetched = await request(`/api/links/${linkId}`, 'GET', null, {
         Authorization: `Bearer ${token}`,
       })
-      setLink(fetched)
+      setLink(fetched.link)
+      setBaseUrl(fetched.baseUrl)
     } catch (e) {}
   }, [token, linkId, request])
 
@@ -26,5 +28,5 @@ export const DetailsPage = () => {
 
   if (loading) return <Loader />
 
-  return <>{!loading && link && <LinkCard link={link} />}</>
+  return <>{!loading && link && <LinkCard link={link} baseUrl={baseUrl} />}</>
 }
