@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const Link = require('../models/Link')
 const auth = require('../middleware/auth.middleware')
-const shortid = require('shortid')
 
 router.post('/generate', auth, async (req, res) => {
   try {
